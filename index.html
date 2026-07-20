@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101b17">
+  <meta name="description" content="Awayday — spot the football city, place your pin, collect the player.">
+  <title>AWAYDAY — The football geography game</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preload" href="assets/location-atlas.png" as="image" type="image/png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="styles.css?v=5">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+  <script src="app.js?v=5" defer></script>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <button class="wordmark" data-screen="home" aria-label="Awayday home">
+      <span class="wordmark-ball">A</span><span>WAYDAY</span>
+    </button>
+    <nav aria-label="Main navigation">
+      <button class="nav-link" data-screen="how">How to play</button>
+      <button class="nav-link collection-link" data-screen="collection">
+        Cards <span id="card-count" class="nav-count">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="app" tabindex="-1">
+    <section id="screen-home" class="screen home-screen active" aria-labelledby="home-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> Football goes global</p>
+        <h1 id="home-title">Know the game.<br><em>Find the place.</em></h1>
+        <p class="hero-sub">You’ve landed at a mystery matchday. Read the stands, follow the clues, and pin the football city. The closer you get, the better the card you keep.</p>
+        <div class="hero-actions">
+          <button id="play-btn" class="button button-primary">
+            Play 5 rounds <span aria-hidden="true">↗</span>
+          </button>
+          <button class="button button-ghost" data-screen="how">How it works</button>
+        </div>
+        <div class="today-strip">
+          <div><span class="strip-label">Format</span><strong>5 cities</strong></div>
+          <div><span class="strip-label">Best score</span><strong id="best-score-home">—</strong></div>
+          <div><span class="strip-label">Your album</span><strong id="album-home">0 / 12</strong></div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="poster poster-back">
+          <div class="poster-code">ARG // 011</div>
+          <div class="poster-title">LA BOMBONERA</div>
+          <div class="poster-stamp">34°36′S</div>
+        </div>
+        <div class="poster poster-front">
+          <div class="floodlight floodlight-left"></div>
+          <div class="floodlight floodlight-right"></div>
+          <div class="poster-topline"><span>MATCHDAY ARCHIVE</span><span>#082</span></div>
+          <div class="stadium-bowl">
+            <div class="crowd crowd-a"></div>
+            <div class="crowd crowd-b"></div>
+            <div class="pitch-lines"></div>
+          </div>
+          <div class="poster-bottom">
+            <div><span>MYSTERY CITY</span><strong>???</strong></div>
+            <div class="poster-badge">90'</div>
+          </div>
+        </div>
+        <div class="float-card">
+          <span class="mini-rating">?</span>
+          <span class="mini-pos">CM</span>
+          <div class="mini-player">♟</div>
+          <span class="mini-name">LOCKED</span>
+        </div>
+        <div class="scribble">pin it!</div>
+      </div>
+    </section>
+
+    <section id="screen-game" class="screen game-screen" aria-labelledby="round-title">
+      <div class="game-topbar">
+        <div>
+          <span id="round-kicker" class="eyebrow">Round 1 / 5</span>
+          <h2 id="round-title">Where is matchday?</h2>
+        </div>
+        <div class="score-box">
+          <span>Score</span><strong id="total-score">0</strong><small>/ 25,000</small>
+        </div>
+      </div>
+
+      <div class="game-layout">
+        <article class="matchday-panel">
+          <div id="scene" class="scene scene-night">
+            <div id="scene-photo" class="scene-photo" role="img" aria-label="Mystery football destination"></div>
+            <div class="scene-vignette" aria-hidden="true"></div>
+            <div class="scene-sky">
+              <span class="scene-moon"></span>
+              <span class="scene-city scene-city-a"></span>
+              <span class="scene-city scene-city-b"></span>
+              <span class="scene-city scene-city-c"></span>
+            </div>
+            <div class="scene-light light-one"></div>
+            <div class="scene-light light-two"></div>
+            <div class="scene-stand stand-far"><span id="stand-pattern"></span></div>
+            <div class="scene-pitch"><span></span><i></i></div>
+            <div class="scene-rail"></div>
+            <div class="scene-meta"><span id="scene-weather">11°C · NIGHT</span><span id="scene-archive">ARCHIVE 001</span></div>
+          </div>
+          <div class="clue-panel">
+            <div class="clue-heading">
+              <span>Scout notes</span>
+              <small>Extra clues reduce your max score</small>
+            </div>
+            <ol id="clue-list" class="clue-list"></ol>
+            <button id="reveal-clue-btn" class="text-button">Reveal another clue <span>−500 pts</span></button>
+          </div>
+        </article>
+
+        <aside class="map-panel">
+          <div class="map-heading">
+            <div><span class="map-step">01</span><strong>Drop your pin</strong></div>
+            <p id="map-instruction">Click anywhere on the map</p>
+          </div>
+          <div id="world-map" class="world-map" role="application" tabindex="0" aria-label="Interactive world map. Click or tap to place a guess.">
+            <div id="leaflet-map" class="leaflet-map" aria-label="OpenStreetMap world map"></div>
+            <svg viewBox="0 0 1000 500" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                  <path d="M 50 0 L 0 0 0 50" fill="none" stroke="currentColor" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="1000" height="500" class="map-grid" fill="url(#grid)"/>
+              <g class="continents">
+                <path d="M55 108 89 71 144 52 199 70 235 103 225 131 190 148 181 179 153 192 138 230 107 222 89 186 60 168 40 137Z"/>
+                <path d="M198 45 249 30 281 50 267 82 235 91Z"/>
+                <path d="M172 238 211 246 238 279 236 324 215 357 206 403 182 447 163 420 166 375 145 336 137 285Z"/>
+                <path d="M437 102 466 79 502 85 519 107 548 102 568 123 555 147 518 150 502 172 467 167 451 142 420 136Z"/>
+                <path d="M496 178 540 158 592 171 621 210 614 255 591 293 570 351 535 337 523 294 496 260 480 216Z"/>
+                <path d="M553 100 613 72 697 67 746 91 827 89 884 121 910 153 879 179 832 170 804 194 761 187 729 214 691 204 668 175 621 162 584 143Z"/>
+                <path d="M690 218 721 215 743 247 772 262 758 286 725 273 705 247Z"/>
+                <path d="M801 286 825 279 845 295 827 313Z"/>
+                <path d="M835 342 884 325 927 346 946 378 919 410 870 413 831 386Z"/>
+                <path d="M952 397 970 389 979 406 961 416Z"/>
+                <path d="M593 368 607 381 597 409 584 395Z"/>
+              </g>
+            </svg>
+            <div id="guess-pin" class="map-pin guess-pin" hidden><span></span></div>
+            <div id="answer-pin" class="map-pin answer-pin" hidden><span></span></div>
+            <svg id="result-line" class="result-line" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="0" x2="0" y2="0"/></svg>
+            <div class="map-reticle" aria-hidden="true"><span></span></div>
+            <div class="map-label label-americas">AMERICAS</div>
+            <div class="map-label label-europe">EUROPE</div>
+            <div class="map-label label-africa">AFRICA</div>
+            <div class="map-label label-asia">ASIA</div>
+            <div class="map-label label-oceania">OCEANIA</div>
+          </div>
+          <button id="lock-guess-btn" class="button button-primary button-wide" disabled>Place a pin first</button>
+          <p class="keyboard-hint">Tip: use the arrow keys to fine-tune your pin</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="screen-result" class="screen result-screen" aria-labelledby="result-title">
+      <div class="result-copy">
+        <p id="result-kicker" class="eyebrow">Round complete</p>
+        <h2 id="result-title">That was close.</h2>
+        <p id="result-location" class="result-location">Lisbon, Portugal</p>
+        <div class="distance-readout">
+          <div><span>Distance</span><strong id="result-distance">238 km</strong></div>
+          <div><span>Round score</span><strong id="result-score">4,720</strong></div>
+          <div><span>Running total</span><strong id="result-total">4,720</strong></div>
+        </div>
+        <p id="result-fact" class="result-fact"></p>
+        <button id="next-round-btn" class="button button-primary">Next city <span>→</span></button>
+      </div>
+      <div class="reward-wrap">
+        <div class="reward-rays"></div>
+        <p class="reward-label">New signing</p>
+        <article id="reward-card" class="player-card art-card card-gold tone-dark" aria-label="Reward player card">
+          <img id="card-frame" class="card-frame" src="assets/cards/card_1_level_3.png" alt="Gold player-card frame">
+          <div class="card-shine"></div>
+          <div class="card-top"><div><strong id="card-rating">88</strong><span id="card-position">CAM</span></div><span id="card-flag">🇵🇹</span></div>
+          <div id="card-silhouette" class="card-silhouette"><img id="card-player-render" src="assets/player-silhouette.svg" alt="Stylized footballer silhouette"></div>
+          <div class="card-name" id="card-name">R. VALE</div>
+          <div class="card-club" id="card-club">LISBOA LIONS</div>
+          <div class="card-stats"><span><b id="stat-pace">86</b>PAC</span><span><b id="stat-shot">89</b>SHO</span><span><b id="stat-pass">91</b>PAS</span></div>
+          <div class="card-rarity" id="card-rarity">AWAYDAY GOLD</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="screen-summary" class="screen summary-screen" aria-labelledby="summary-title">
+      <div class="summary-head">
+        <p class="eyebrow">Full time</p>
+        <h2 id="summary-title">Passport stamped.</h2>
+        <p id="summary-message">Five cities, one seriously good away day.</p>
+      </div>
+      <div class="final-score-card">
+        <span>Final score</span><strong id="final-score">21,450</strong><small>/ 25,000</small>
+        <div class="score-meter"><i id="score-meter-fill"></i></div>
+        <p id="personal-best"></p>
+      </div>
+      <div id="round-recap" class="round-recap"></div>
+      <div class="summary-actions">
+        <button id="play-again-btn" class="button button-primary">Play again</button>
+        <button id="share-btn" class="button button-ghost">Share score</button>
+        <button class="button button-ghost" data-screen="collection">View my cards</button>
+      </div>
+    </section>
+
+    <section id="screen-collection" class="screen collection-screen" aria-labelledby="collection-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Your club</p><h2 id="collection-title">The away end.</h2></div>
+        <p>Every good guess adds a footballer to your album. Find all twelve cities and complete the set.</p>
+      </div>
+      <div class="collection-progress"><span><b id="collection-owned">0</b> / 12 signed</span><div><i id="collection-fill"></i></div></div>
+      <div id="collection-grid" class="collection-grid"></div>
+      <div class="vault-heading">
+        <div><span class="eyebrow">Design archive</span><h3>Frame vault</h3></div>
+        <p>Choose a frame to equip it for your next signing. Every supplied design lives here.</p>
+      </div>
+      <div id="frame-vault" class="frame-vault" aria-label="Available card-frame designs"></div>
+    </section>
+
+    <section id="screen-how" class="screen how-screen" aria-labelledby="how-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">The rules</p><h2 id="how-title">Three touches.<br>One perfect pin.</h2></div>
+        <button id="how-play-btn" class="button button-primary">Start a game</button>
+      </div>
+      <div class="how-grid">
+        <article><span class="how-number">01</span><div class="how-icon">◫</div><h3>Read the ground</h3><p>Study an original matchday scene and your first scout note. Architecture, weather and football culture all matter.</p></article>
+        <article><span class="how-number">02</span><div class="how-icon">⌖</div><h3>Pin the city</h3><p>Place your guess anywhere in the world. Reveal more clues if you’re stuck, but each one trims 500 points.</p></article>
+        <article><span class="how-number">03</span><div class="how-icon">◇</div><h3>Sign the player</h3><p>Accuracy sets the rarity of the real football icon you unlock. Ratings are original to AWAYDAY, and your cards stay saved on this device.</p></article>
+      </div>
+      <div class="scoring-note"><strong>Scoring</strong><span>Under 25 km = 5,000 points</span><span>Distance and extra clues lower your score</span><span>5 rounds per match</span></div>
+    </section>
+  </main>
+
+  <footer><span>AWAYDAY 2026</span><span>Unofficial fan project. Not endorsed by any player, club, league or game publisher.</span><button id="reset-data">Reset progress</button></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

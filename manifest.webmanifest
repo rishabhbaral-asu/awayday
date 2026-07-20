@@ -1,0 +1,12 @@
+{
+  "name": "AWAYDAY — Football Geography",
+  "short_name": "AWAYDAY",
+  "description": "Spot the football city, place your pin, and collect the player.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101b17",
+  "theme_color": "#101b17",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
