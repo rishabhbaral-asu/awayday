@@ -1,83 +1,83 @@
 const CITIES = [
   {
-    id: "buenos-aires", city: "Buenos Aires", country: "Argentina", flag: "🇦🇷", lat: -34.6037, lon: -58.3816,
+    id: "buenos-aires", city: "Buenos Aires", country: "Argentina", flag: "🇦🇷", flagFile: "ar.svg", badge: "boca-juniors.png", lat: -34.6037, lon: -58.3816,
     weather: "18°C · DUSK", scene: "sunset", color: "#4a91d2", archive: "ARCHIVE 011",
     clues: ["One end of the ground rises almost vertically above a dense residential barrio.", "The home colours mirror the flag of Sweden, despite being in South America.", "This capital gave the world the Superclásico."],
     fact: "Buenos Aires lives football at neighbourhood level: club identity can change from one block to the next.",
     player: { name: "RIQUELME", position: "CAM", club: "BOCA JUNIORS", stats: [80, 87, 94] }
   },
   {
-    id: "lisbon", city: "Lisbon", country: "Portugal", flag: "🇵🇹", lat: 38.7223, lon: -9.1393,
+    id: "lisbon", city: "Lisbon", country: "Portugal", flag: "🇵🇹", flagFile: "pt.svg", badge: "benfica.png", lat: 38.7223, lon: -9.1393,
     weather: "17°C · CLEAR", scene: "day", color: "#d5483e", archive: "ARCHIVE 082",
     clues: ["Red-tiled roofs and a broad Atlantic estuary sit beyond the stands.", "Two decorated rivals split this hilly capital between red and green.", "The city hosted the 2014 European club final."],
     fact: "Lisbon's derby is one of Europe's great cross-city rivalries, with both clubs rooted in the Portuguese capital.",
     player: { name: "EUSÉBIO", position: "ST", club: "SL BENFICA", stats: [94, 95, 86] }
   },
   {
-    id: "istanbul", city: "Istanbul", country: "Türkiye", flag: "🇹🇷", lat: 41.0082, lon: 28.9784,
+    id: "istanbul", city: "Istanbul", country: "Türkiye", flag: "🇹🇷", flagFile: "tr.svg", badge: "galatasaray.png", lat: 41.0082, lon: 28.9784,
     weather: "13°C · NIGHT", scene: "night", color: "#f0b523", archive: "ARCHIVE 034",
     clues: ["Ferries, gulls and a strait divide this matchday across two continents.", "The city's three giants wear red-yellow, black-white and navy-yellow.", "A famous 2005 European final here ended after a three-goal comeback."],
     fact: "Istanbul is the only city in the game spanning Europe and Asia — fitting for a place with rivalries on both shores.",
     player: { name: "ARDA TURAN", position: "LM", club: "GALATASARAY", stats: [86, 84, 90] }
   },
   {
-    id: "london", city: "London", country: "England", flag: "🏴", lat: 51.5072, lon: -0.1276,
+    id: "london", city: "London", country: "England", flag: "🏴", flagFile: "gb-eng.svg", badge: "arsenal.png", lat: 51.5072, lon: -0.1276,
     weather: "9°C · OVERCAST", scene: "day", color: "#e8e8e0", archive: "ARCHIVE 007",
     clues: ["A red double-decker crawls past rows of brick terraces outside the turnstiles.", "This city has more professional clubs than any other stop in the game.", "The national stadium's enormous arch is visible for miles."],
     fact: "London's football map is unusually crowded, with major clubs spread across the north, south, east and west.",
     player: { name: "BUKAYO SAKA", position: "RW", club: "ARSENAL", stats: [93, 88, 89] }
   },
   {
-    id: "marrakech", city: "Marrakech", country: "Morocco", flag: "🇲🇦", lat: 31.6295, lon: -7.9811,
+    id: "marrakech", city: "Marrakech", country: "Morocco", flag: "🇲🇦", flagFile: "ma.svg", badge: "stade-de-reims.png", lat: 31.6295, lon: -7.9811,
     weather: "26°C · SUNSET", scene: "sunset", color: "#d85136", archive: "ARCHIVE 106",
     clues: ["Terracotta walls glow beneath distant snow-capped mountains.", "Arabic and French appear together on signs around the ground.", "The Atlas Mountains rise south of this Moroccan city."],
     fact: "Marrakech sits within sight of the Atlas Mountains, giving its football landscape one of the game's best backdrops.",
     player: { name: "JUST FONTAINE", position: "ST", club: "STADE DE REIMS", stats: [89, 96, 82] }
   },
   {
-    id: "mexico-city", city: "Mexico City", country: "Mexico", flag: "🇲🇽", lat: 19.4326, lon: -99.1332,
+    id: "mexico-city", city: "Mexico City", country: "Mexico", flag: "🇲🇽", flagFile: "mx.svg", badge: "real-madrid.png", lat: 19.4326, lon: -99.1332,
     weather: "22°C · HAZY", scene: "day", color: "#f1cd3b", archive: "ARCHIVE 086",
     clues: ["The thin air is noticeable inside a vast bowl more than two kilometres above sea level.", "This ground has staged two men's World Cup finals.", "A famous hand and a famous goal both appeared here in 1986."],
     fact: "Mexico City's altitude and immense stadium bowl have made it one of world football's most recognisable stages.",
     player: { name: "HUGO SÁNCHEZ", position: "ST", club: "REAL MADRID", stats: [91, 96, 80] }
   },
   {
-    id: "naples", city: "Naples", country: "Italy", flag: "🇮🇹", lat: 40.8518, lon: 14.2681,
+    id: "naples", city: "Naples", country: "Italy", flag: "🇮🇹", flagFile: "it.svg", badge: "napoli.png", lat: 40.8518, lon: 14.2681,
     weather: "20°C · CLEAR", scene: "day", color: "#61aee7", archive: "ARCHIVE 010",
     clues: ["A volcanic silhouette watches over a city dressed in sky blue.", "Shrines to an Argentine number ten still fill the narrow streets.", "This southern Italian city sits in the shadow of Vesuvius."],
     fact: "Naples' bond with its football club is woven into the city's identity, street art and neighbourhood shrines.",
     player: { name: "D. MARADONA", position: "CAM", club: "SSC NAPOLI", stats: [91, 93, 96] }
   },
   {
-    id: "rio", city: "Rio de Janeiro", country: "Brazil", flag: "🇧🇷", lat: -22.9068, lon: -43.1729,
+    id: "rio", city: "Rio de Janeiro", country: "Brazil", flag: "🇧🇷", flagFile: "br.svg", badge: "flamengo.png", lat: -22.9068, lon: -43.1729,
     weather: "29°C · HUMID", scene: "sunset", color: "#d84135", archive: "ARCHIVE 050",
     clues: ["Steep green hills and apartment blocks crowd the horizon beyond a giant oval ground.", "Four traditional giants share this coastal city's attention.", "The stadium hosted the deciding matches of the 1950 and 2014 World Cups."],
     fact: "Rio's Maracanã has been a stage for World Cups, domestic classics and generations of Brazilian football culture.",
     player: { name: "ZICO", position: "CAM", club: "FLAMENGO", stats: [89, 94, 95] }
   },
   {
-    id: "seoul", city: "Seoul", country: "South Korea", flag: "🇰🇷", lat: 37.5665, lon: 126.978,
+    id: "seoul", city: "Seoul", country: "South Korea", flag: "🇰🇷", flagFile: "kr.svg", badge: "manchester-united.png", lat: 37.5665, lon: 126.978,
     weather: "14°C · NIGHT", scene: "night", color: "#e33e45", archive: "ARCHIVE 200",
     clues: ["Neon Hangul signs and wooded hills frame the journey to the ground.", "A broad river divides this enormous East Asian capital.", "The opening match of the 2002 World Cup was played here."],
     fact: "Seoul combines dense urban neighbourhoods, mountain ridges and a strong legacy from the 2002 World Cup.",
     player: { name: "PARK JI-SUNG", position: "CM", club: "MANCHESTER UNITED", stats: [91, 82, 89] }
   },
   {
-    id: "sydney", city: "Sydney", country: "Australia", flag: "🇦🇺", lat: -33.8688, lon: 151.2093,
+    id: "sydney", city: "Sydney", country: "Australia", flag: "🇦🇺", flagFile: "au.svg", badge: "everton.png", lat: -33.8688, lon: 151.2093,
     weather: "24°C · CLEAR", scene: "day", color: "#5c9fe7", archive: "ARCHIVE 230",
     clues: ["Eucalyptus, bright sun and an oval-code sporting culture surround this stop.", "The harbour's white sails are this city's most famous silhouette.", "The 2023 Women's World Cup final was played here."],
     fact: "Sydney's football story shares the city with rugby and Australian rules, but major finals bring enormous crowds.",
     player: { name: "TIM CAHILL", position: "CAM", club: "EVERTON", stats: [86, 92, 84] }
   },
   {
-    id: "tokyo", city: "Tokyo", country: "Japan", flag: "🇯🇵", lat: 35.6762, lon: 139.6503,
+    id: "tokyo", city: "Tokyo", country: "Japan", flag: "🇯🇵", flagFile: "jp.svg", badge: "japan-national-team.png", lat: 35.6762, lon: 139.6503,
     weather: "16°C · NIGHT", scene: "night", color: "#4e75d8", archive: "ARCHIVE 199",
     clues: ["Orderly queues, rail lines and glowing vending machines mark the walk to the gate.", "The home league began its professional era in 1993.", "This metropolis hosted the 2002 World Cup final in a neighbouring city."],
     fact: "Greater Tokyo's rail network makes matchday travel part of a vast, interconnected football region.",
     player: { name: "HOMARE SAWA", position: "CM", club: "INAC KOBE LEONESSA", stats: [88, 90, 95] }
   },
   {
-    id: "johannesburg", city: "Johannesburg", country: "South Africa", flag: "🇿🇦", lat: -26.2041, lon: 28.0473,
+    id: "johannesburg", city: "Johannesburg", country: "South Africa", flag: "🇿🇦", flagFile: "za.svg", badge: "leeds-united.png", lat: -26.2041, lon: 28.0473,
     weather: "21°C · GOLDEN HOUR", scene: "sunset", color: "#e5b82d", archive: "ARCHIVE 201",
     clues: ["A calabash-shaped bowl rises on the highveld under a huge sky.", "Vuvuzelas became the soundtrack of a global tournament here.", "The 2010 World Cup final was played in this city."],
     fact: "Johannesburg's vast calabash-inspired stadium became the visual centrepiece of Africa's first men's World Cup.",
@@ -361,7 +361,23 @@ function getFrame(city, rarity) {
 }
 
 function frameUrl(frame) {
-  return `assets/cards/${frame.file}`;
+  return `assets/${frame.file}`;
+}
+
+function flagUrl(city) {
+  return `assets/flags/${city.flagFile}`;
+}
+
+function badgeUrl(city) {
+  return `assets/badges/${city.badge}`;
+}
+
+function flagMarkup(city, className = "flag-icon") {
+  return `<img class="${className}" src="${flagUrl(city)}" alt="${city.country} flag">`;
+}
+
+function identifiersMarkup(city, className = "card-identifiers") {
+  return `<span class="${className}">${flagMarkup(city)}<img class="club-badge" src="${badgeUrl(city)}" alt="${city.player.club} badge"></span>`;
 }
 
 function lockGuess() {
@@ -417,7 +433,7 @@ function renderResult(result) {
   const tone = score >= 4500 ? "Top bins." : score >= 3000 ? "That was close." : score >= 1500 ? "You found the region." : "A long way from home.";
   $("#result-kicker").textContent = `Round ${state.roundIndex + 1} complete`;
   $("#result-title").textContent = tone;
-  $("#result-location").textContent = `${city.flag} ${city.city}, ${city.country}`;
+  $("#result-location").innerHTML = `${flagMarkup(city, "result-flag")}<span>${city.city}, ${city.country}</span>`;
   $("#result-distance").textContent = distance < 1 ? "Perfect pin" : `${format(distance)} km`;
   $("#result-score").textContent = format(score);
   $("#result-total").textContent = format(state.total);
@@ -436,7 +452,7 @@ function renderRewardCard(city, rarity) {
   $("#card-frame").alt = `${frame.label} player-card frame`;
   $("#card-rating").textContent = rarity.rating;
   $("#card-position").textContent = city.player.position;
-  $("#card-flag").textContent = city.flag;
+  $("#card-identifiers").innerHTML = `${flagMarkup(city)}<img class="club-badge" src="${badgeUrl(city)}" alt="${city.player.club} badge">`;
   $("#card-name").textContent = city.player.name;
   $("#card-club").textContent = city.player.club;
   $("#stat-pace").textContent = scaledStat(city.player.stats[0], rarity.rating);
@@ -472,7 +488,7 @@ function renderSummary() {
   const grade = state.total >= 22500 ? "World class scouting." : state.total >= 17000 ? "You know your away ends." : state.total >= 10000 ? "A respectable road trip." : "Passport renewal recommended.";
   $("#summary-message").textContent = grade;
   $("#round-recap").innerHTML = state.results.map(item => `
-    <div class="recap-item"><span class="recap-flag">${item.city.flag}</span><span class="recap-city">${item.city.city}</span><strong>${format(item.score)}</strong></div>
+    <div class="recap-item"><span class="recap-flag">${flagMarkup(item.city)}</span><span class="recap-city">${item.city.city}</span><strong>${format(item.score)}</strong></div>
   `).join("");
   showScreen("summary");
   requestAnimationFrame(() => $("#score-meter-fill").style.width = `${Math.min(100, state.total / 250)}%`);
@@ -489,7 +505,7 @@ function renderCollection() {
     const frame = findFrame(saved.frame) || getFrame(city, fallbackRarity);
     return `<article class="album-card art-card-mini ${saved.rarity} tone-${frame.tone}">
       <img class="album-frame" src="${frameUrl(frame)}" alt="${frame.label} card frame" loading="lazy">
-      <div class="album-card-top"><span>${saved.rating}</span><span>${city.flag}</span></div>
+      <div class="album-card-top"><span>${saved.rating}</span>${identifiersMarkup(city, "album-identifiers")}</div>
       <div class="album-card-figure"><img src="assets/player-silhouette.svg" alt="" loading="lazy"></div>
       <div class="album-card-name">${city.player.name}</div><div class="album-card-city">${city.player.club} · ${city.player.position}</div>
     </article>`;
@@ -522,7 +538,7 @@ function selectFrame(event) {
 
 function bindImageFallbacks() {
   $$(".album-frame, .frame-sample img").forEach(image => image.addEventListener("error", () => {
-    image.src = "assets/cards/card_0_level_3.png";
+    image.src = "assets/card_0_level_3.png";
   }, { once: true }));
 }
 
@@ -567,7 +583,7 @@ $("#next-round-btn").addEventListener("click", advanceRound);
 $("#share-btn").addEventListener("click", shareScore);
 $("#reset-data").addEventListener("click", resetProgress);
 $("#frame-vault").addEventListener("click", selectFrame);
-$("#card-frame").addEventListener("error", event => { event.currentTarget.src = "assets/cards/card_0_level_3.png"; });
+$("#card-frame").addEventListener("error", event => { event.currentTarget.src = "assets/card_0_level_3.png"; });
 document.addEventListener("keydown", nudgePin);
 
 updateHome();

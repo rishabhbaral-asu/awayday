@@ -46,6 +46,22 @@ try:
     command(socket, 20, "Emulation.setDeviceMetricsOverride", {"width": 1200, "height": 900, "deviceScaleFactor": 1, "mobile": False})
     evaluate(socket, 24, "location.reload()")
     time.sleep(0.6)
+    evaluate(socket, 27, """
+      (() => {
+        const probe = document.createElement('div');
+        probe.id = 'asset-probe';
+        probe.hidden = true;
+        probe.innerHTML = CITIES.flatMap(city => [
+          `<img src="${flagUrl(city)}" alt="">`,
+          `<img src="${badgeUrl(city)}" alt="">`
+        ]).join('');
+        document.body.append(probe);
+        return probe.querySelectorAll('img').length;
+      })()
+    """)
+    time.sleep(0.5)
+    assets = evaluate(socket, 28, "({count: document.querySelectorAll('#asset-probe img').length, broken: [...document.querySelectorAll('#asset-probe img')].filter(image => !image.complete || image.naturalWidth === 0).length})")
+    assert assets == {"count": 24, "broken": 0}, assets
     evaluate(socket, 1, "document.querySelector('#play-btn').click()")
     time.sleep(0.4)
     game = evaluate(socket, 2, "({screen: state.screen, rounds: state.rounds.length, clueCount: document.querySelectorAll('#clue-list li').length})")

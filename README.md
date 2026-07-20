@@ -34,10 +34,11 @@ The map uses Leaflet 1.9.4 with standard OpenStreetMap tiles and visible attribu
 - Haversine distance scoring
 - Four card rarities
 - 31 locally bundled card-frame designs with a selectable frame vault
+- Locally bundled 4×3 country flags and club/national-team badges
 - Twelve-city local card album
 - Personal best and collection saved in `localStorage`
 - Responsive mouse, touch and keyboard controls
 
-The collectible set uses real footballers connected to each destination and identifies an associated real club in text, but all ratings are original game values. National flags are displayed using the platform's standard flag glyphs. The supplied transparent card-frame PNGs are bundled locally in `assets/cards/` and composed with responsive HTML text and artwork; the frame vault lets a player equip any design for their next signing. The project does not use player photos or likenesses, club crests, league marks, official statistics, or scraped databases. It is an unofficial, non-commercial fan prototype and is not endorsed by any featured player, club, league, federation, or game publisher.
+The collectible set uses real footballers connected to each destination and identifies an associated real club in text, but all ratings are original game values. National flags, card frames, and the specific club/national-team badges used by the game are bundled locally under `assets/`, so repository-scoped GitHub Pages deployments do not depend on cross-site image requests. The transparent card-frame PNGs are composed with responsive HTML text and artwork; the frame vault lets a player equip any design for the next signing. The project does not use player photos or likenesses, league marks, official statistics, or scraped databases. It is an unofficial, non-commercial fan prototype and is not endorsed by any featured player, club, league, federation, game publisher, or asset source.
 
-Player names and biographical associations can still involve publicity and database rights in some jurisdictions. Before monetizing or distributing the game commercially, obtain legal advice and the appropriate player, club, competition, and data licences.
+Player names, biographical associations, and football badges can involve publicity, trademark, copyright, and database rights in some jurisdictions. Before monetizing or distributing the game commercially, obtain legal advice and the appropriate player, club, competition, badge, and data licences. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) for asset sources and notices.
